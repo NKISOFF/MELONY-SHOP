@@ -1,0 +1,9 @@
+{
+  "name": "digiline-shop-netlify",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Boutique en ligne du câble oraimo DigiLine pour Netlify : commande, suivi par code, administration.",
+  "dependencies": {
+    "@netlify/blobs": "^11.1.9"
+  }
+}

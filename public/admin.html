@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Administration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span id="shopName">Boutique</span><small>Administration</small></div>
+    <nav class="tabs" id="adminNav" hidden>
+      <button class="btn ghost small" type="button" id="logoutBtn">Se déconnecter</button>
+    </nav>
+  </header>
+
+  <!-- Connexion -->
+  <main id="loginView" hidden>
+    <section class="first">
+      <div class="login">
+        <form id="loginForm" novalidate>
+          <h2>Connexion</h2>
+          <p class="hint">Espace réservé au vendeur.</p>
+          <label for="password">Mot de passe
+            <input id="password" type="password" autocomplete="current-password" required>
+          </label>
+          <button class="btn" type="submit">Se connecter</button>
+          <div class="msg" id="loginMsg" role="status"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Commandes -->
+  <main id="appView" hidden>
+    <section class="first">
+      <div class="adminbar">
+        <h2>Commandes</h2>
+        <a class="btn ghost small" href="/api/admin/export.csv">Exporter en tableau (CSV)</a>
+      </div>
+      <p class="sub mt">Les nouvelles commandes arrivent ici en attente. Confirmez ou refusez chacune, expédiez-la, puis marquez-la livrée quand le client a payé.</p>
+      <div class="banner ok" id="newBanner" hidden></div>
+      <div class="stats" id="stats"></div>
+
+      <details class="newform">
+        <summary>Ajouter une commande reçue par WhatsApp ou par téléphone</summary>
+        <form id="manualForm" novalidate>
+          <label for="mName">Nom du client<input id="mName" type="text" maxlength="80" required></label>
+          <label for="mPhone">Téléphone<input id="mPhone" type="tel" inputmode="tel" maxlength="20" required></label>
+          <label for="mQty">Quantité<input id="mQty" type="number" inputmode="numeric" min="1" max="999" value="1"></label>
+          <label for="mAddr">Adresse de livraison<textarea id="mAddr" maxlength="300" required></textarea></label>
+          <button class="btn" type="submit">Enregistrer la commande</button>
+          <div class="msg" id="manualMsg" role="status"></div>
+        </form>
+      </details>
+
+      <div class="toolbar">
+        <label for="filter">Afficher
+          <select id="filter">
+            <option value="all">Toutes les commandes</option>
+            <option value="en_attente">À confirmer</option>
+            <option value="confirmee">Confirmées, à expédier</option>
+            <option value="expediee">Expédiées</option>
+            <option value="livree">Livrées et payées</option>
+            <option value="refusee">Refusées</option>
+          </select>
+        </label>
+      </div>
+      <div class="msg" id="adminMsg" role="status"></div>
+      <div id="adminList" class="orders-list"></div>
+    </section>
+  </main>
+</div>
+<script src="/common.js"></script>
+<script src="/admin.js"></script>
+</body>
+</html>
